@@ -1,11 +1,12 @@
-<!-- <script>
-  import 'bootstrap/dist/css/bootstrap.min.css';
-</script> -->
+<script>
+  // needed for static serving with GH Pages
+  import { base } from '$app/paths';
+</script>
 
 <nav>
-  <a href="/">Home</a>
-  <a href="/about">About</a>
-  <a href="/settings">Settings</a>
+  <a href="{base}/">Home</a>
+  <a href="{base}/about">About</a>
+  <!-- <a href="{base}/settings">Settings</a> -->
 </nav>
 
 <slot></slot>
