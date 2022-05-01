@@ -16,13 +16,14 @@
     let poll = e.detail;
     if (poll !== null) {
       alert('Added new poll.');
+      console.log(poll);
     }
     // switch to polls view
     page = 'My Polls';
   }
 
   const fadeTime: number = 75;
-  const fadeDelay = {delay: fadeTime};
+  const fadeDelay = {delay: fadeTime + 100};
   const fadeDuration = {duration: fadeTime};
 
 

@@ -10,7 +10,7 @@
 <h3>My Polls</h3>
 
 <div id="new-poll">
-  <Button color="green" shadow={true} padding="4px 8px" on:click={() => dispatch('createNewPoll')}>New Poll</Button>
+  <Button type="submit" shadow={true} padding="4px 8px" on:click={() => dispatch('createNewPoll')}>New Poll</Button>
 </div>
 
 <div id="poll-view">

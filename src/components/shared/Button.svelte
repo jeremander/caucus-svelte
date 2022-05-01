@@ -3,6 +3,7 @@
 
   export let type: string = '';
   export let shadow: boolean = true;
+  export let disabled: boolean = false;
   const types = ['add-item', 'discard-item', 'submit', 'cancel'];
   let cssVars = getCssVars($$restProps);
 
@@ -16,7 +17,7 @@
   $: customClass = getBtnClass(type);
 </script>
 
-<button class="btn btn-primary {customClass}" class:btn-shadow={shadow} style={cssVars} on:click>
+<button class="btn btn-primary {customClass}" class:btn-shadow={shadow} style={cssVars} {disabled} on:click>
   <slot />
 </button>
 
