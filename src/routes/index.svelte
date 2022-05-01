@@ -25,26 +25,25 @@
   const fadeTime: number = 75;
   const fadeDelay = {delay: fadeTime + 100};
   const fadeDuration = {duration: fadeTime};
-
-
 </script>
 
-<LoginForm />
-
 {#if page === 'My Polls'}
-  <section class="poll-section" in:fade={fadeDelay} out:fade={fadeDuration}>
-    <MyPolls on:createNewPoll={createNewPoll}/>
-  </section>
+  <div in:fade={fadeDelay} out:fade={fadeDuration}>
+    <LoginForm />
+    <section class="my-polls">
+      <MyPolls on:createNewPoll={createNewPoll}/>
+    </section>
+  </div>
 {:else}
 
-  <section class="poll-section" in:fade={fadeDelay} out:fade={fadeDuration}>
+  <section class="new-poll" in:fade={fadeDelay} out:fade={fadeDuration}>
     <NewPoll on:submitNewPoll={submitNewPoll}/>
   </section>
 {/if}
 
 <style>
-  .poll-section {
-    margin-top: 1.5em;
+  .my-polls {
+    margin-top: 2em;
   }
 </style>
 

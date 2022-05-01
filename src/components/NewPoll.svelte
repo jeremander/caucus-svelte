@@ -1,8 +1,8 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
+  import { flip } from 'svelte/animate';
   import { fade } from 'svelte/transition';
-  import Trash from "svelte-bootstrap-icons/lib/Trash";
-  import Button from "./shared/Button.svelte";
+    import Button from "./shared/Button.svelte";
   import PollAnswer from "./NewPoll/PollAnswer.svelte";
 
   const dispatch = createEventDispatcher();
@@ -37,6 +37,8 @@
     dispatch('submitNewPoll', null);
   }
 
+  const fadeDuration = {duration: 200};
+
   const controlBtnProps = {
     'padding': '0.3em 0.6em'
   };
@@ -46,26 +48,26 @@
 <h3>New Poll</h3>
 
 <form id="new-poll-form" on:submit|preventDefault={submitNewPoll}>
-  <div class="poll-form-grid">
-
-    <!-- Question -->
-    <div class="poll-question form-group">
-      <label for="poll-question"><b>Poll Question</b></label>
-      <textarea class="form-control" id="poll-question" required bind:value={poll.question}></textarea>
-    </div>
-
-    <!-- Answers -->
-    {#each [...Array(numAnswers).keys()] as i}
-      <PollAnswer {i} disableAdd={numAnswers >= maxAnswers} bind:answer={poll.answers[i]} on:deleteAnswer={deleteAnswer} on:addAnswer={addAnswer}/>
-    {/each}
+  <!-- Question -->
+  <div class="poll-question form-group">
+    <label for="poll-question"><b>Poll Question</b></label>
+    <textarea class="form-control" id="poll-question" required bind:value={poll.question}></textarea>
   </div>
+
+  <!-- Answers -->
+  {#each [...Array(numAnswers).keys()] as i (i)}
+    <div transition:fade={fadeDuration}>
+      <PollAnswer {i} disableAdd={numAnswers >= maxAnswers} bind:answer={poll.answers[i]} on:deleteAnswer={deleteAnswer} on:addAnswer={addAnswer}/>
+    </div>
+  {/each}
 
   <!-- Buttons -->
   <div class="btn-row">
-    <span><Button type="submit">Submit</Button></span>
-    <span><Button type="cancel" on:click={cancelNewPoll}>Cancel</Button></span>
+    <div class="poll-form-buttons">
+      <span><Button type="submit">Submit</Button></span>
+      <span><Button type="cancel" on:click={cancelNewPoll}>Cancel</Button></span>
+    </div>
   </div>
-
 </form>
 
 
@@ -82,55 +84,26 @@
     max-width: 100%;
     margin: 0 auto;
     text-align: center;
-
-    .poll-form-grid {
-      display: grid;
-      grid-row-gap: 1em;
-      grid-template-columns: [label] 20% [input] auto [controls] 20%;
-      grid-template-rows: repeat(auto-fill, [main-row] 1fr);
-
-      @include tablet-max {
-        grid-template-columns: [label] 30% [input] auto [controls] 30%;
-      }
+    div {
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+      // background-color: red;
     }
     .poll-question {
-      grid-column-start: input;
+      width: 50%;
       textarea {
         border-radius: 4px;
         height: 4em;
       }
     }
-    :global {
-      .poll-answer-label {
-        grid-column-start: label;
-        position: relative;
-        > label {
-          height: 100%;
-          float: right;
-          font-size: 11pt;
-        }
-      }
-      .poll-answer-input {
-        grid-column-start: input;
-      }
-      .poll-answer-controls {
-        grid-column-start: controls;
-        padding-top: 3px;
-        padding-bottom: 3px;
-        margin-left: 1em;
-        .poll-answer-control {
-          margin-right: 3px;
-          float: left;
-        }
-        .btn-add-poll {
-          font-weight: bold;
-        }
-      }
-    }
     .btn-row {
-      margin: 1em 0;
-      grid-column-start: input;
-      > span {
+      margin: 1em auto;
+      // .poll-form-buttons {
+        // background-color: green;
+        // display: inline-block;
+      // }
+      span {
         margin: 0 0.5em;
       }
     }
