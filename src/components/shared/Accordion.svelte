@@ -8,6 +8,10 @@
 <div class="accordion">
   {#each items as item, i}
     <AccordionItem>
+      <!-- insert icon without wrapping in a div -->
+      <svelte:fragment slot="icon">
+        <slot name="icon" />
+      </svelte:fragment>
       <div slot="title">
         {#if type == "html"}
           {@html item.title}
@@ -27,3 +31,17 @@
   {/each}
 
 </div>
+
+<style lang="scss">
+
+  @import '../../styles/colors.scss';
+
+  :global(div[slot="icon"]) {
+    position: absolute;
+    left: 1em;
+    color: $accordion-icon;
+    &:hover {
+      color: $accordion-icon-hover;
+    }
+  }
+</style>

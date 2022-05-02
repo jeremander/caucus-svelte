@@ -12,7 +12,8 @@
 
 <div class="item-header" class:closed={!opened} on:click={() => opened = !opened} >
   <div class="item-title">
-    <slot name="title"  />
+    <slot name="icon" />
+    <slot name="title" />
   </div>
   <div class="chevron">
     {#if opened}

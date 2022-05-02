@@ -9,6 +9,7 @@
 
   import Accordion from "./shared/Accordion.svelte";
   import Button from "./shared/Button.svelte";
+import { stop_propagation } from 'svelte/internal';
 
   // // this hackery is needed to ensure Bootstrap only gets imported in the browser
   // let Collapse;
@@ -46,7 +47,11 @@
     body += '</ol>';
     return {title: marked.parseInline(poll.question), body: body};
   });
-  console.log(pollData);
+
+  function editPoll(e) {
+    e.stopPropagation();
+    alert('Editing poll.');
+  }
 
 </script>
 
@@ -60,7 +65,11 @@
   {#if polls.length == 0}
     <p>There are no polls to display.</p>
   {:else}
-    <Accordion type="html" items="{pollData}"></Accordion>
+    <Accordion type="html" items="{pollData}">
+      <div slot="icon" on:click={editPoll}>
+        <PencilSquare />
+      </div>
+    </Accordion>
   {/if}
 </div>
 
@@ -83,6 +92,7 @@
     width: 60%;
 
     .edit-poll {
+      display: inline;
       float: left;
     }
     :global(code) {

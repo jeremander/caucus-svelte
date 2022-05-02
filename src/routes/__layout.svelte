@@ -23,6 +23,7 @@
 <style lang="scss">
 
   @import '../styles/colors.scss';
+  @import '../styles/fonts.scss';
   @import 'bootstrap/dist/css/bootstrap.min.css';
 
   :global {
@@ -39,6 +40,7 @@
       color: #333333;
     }
     h1 {
+      font-family: NotoSerif, Arial;
       padding-bottom: 0.75em;
     }
   }
