@@ -6,10 +6,12 @@ const config = {
   kit: {
     // hydrate the <div id="svelte"> element in src/app.html
     adapter: adapter({
-      fallback: null
+      // fallback: null
+      fallback: 'index.html'
     }),
     prerender: {
-      default: true,
+      // default: true,
+      enabled: false
     },
     paths: {
       base: process.env.NODE_ENV === "production" ? "/caucus-svelte" : "",

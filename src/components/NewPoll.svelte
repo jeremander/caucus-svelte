@@ -1,6 +1,5 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
-  import { flip } from 'svelte/animate';
   import { fade } from 'svelte/transition';
     import Button from "./shared/Button.svelte";
   import PollAnswer from "./NewPoll/PollAnswer.svelte";
@@ -88,7 +87,6 @@
       display: block;
       margin: 0 auto;
       text-align: center;
-      // background-color: red;
     }
     .poll-question {
       width: 50%;
@@ -99,10 +97,6 @@
     }
     .btn-row {
       margin: 1em auto;
-      // .poll-form-buttons {
-        // background-color: green;
-        // display: inline-block;
-      // }
       span {
         margin: 0 0.5em;
       }

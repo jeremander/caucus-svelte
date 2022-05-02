@@ -3,3 +3,4 @@ export function getCssVars(obj) {
         .filter(([key]) => !key.startsWith('$'))
         .reduce((css, [key, value]) => `${css}${key}: ${value};`, '');
 }
+

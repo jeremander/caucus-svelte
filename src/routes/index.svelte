@@ -1,45 +1,27 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
+  import { goto } from '$app/navigation';
   import MyPolls from '../components/MyPolls.svelte';
   import NewPoll from '../components/NewPoll.svelte';
   import LoginForm from '../components/LoginForm.svelte';
 
-  // let page: string = 'My Polls';
-  let page: string = 'New Poll';
-
   function createNewPoll() {
     // switch to new poll form view
-    page = 'New Poll';
+    goto('/new-poll');
   }
 
-  function submitNewPoll(e) {
-    let poll = e.detail;
-    if (poll !== null) {
-      alert('Added new poll.');
-      console.log(poll);
-    }
-    // switch to polls view
-    page = 'My Polls';
-  }
 
   const fadeTime: number = 75;
-  const fadeDelay = {delay: fadeTime + 100};
+  const fadeDelay = {delay: 2 * fadeTime};
   const fadeDuration = {duration: fadeTime};
 </script>
 
-{#if page === 'My Polls'}
-  <div in:fade={fadeDelay} out:fade={fadeDuration}>
-    <LoginForm />
-    <section class="my-polls">
-      <MyPolls on:createNewPoll={createNewPoll}/>
-    </section>
-  </div>
-{:else}
-
-  <section class="new-poll" in:fade={fadeDelay} out:fade={fadeDuration}>
-    <NewPoll on:submitNewPoll={submitNewPoll}/>
+<div class="polls-view" in:fade={fadeDelay} out:fade={fadeDuration}>
+  <LoginForm />
+  <section class="my-polls">
+    <MyPolls on:createNewPoll={createNewPoll}/>
   </section>
-{/if}
+</div>
 
 <style>
   .my-polls {

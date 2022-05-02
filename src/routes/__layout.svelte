@@ -10,6 +10,10 @@
   <!-- <a href="{base}/settings">Settings</a> -->
 <!-- </nav> -->
 
+<svelte:head>
+  <title>{APP_TITLE}</title>
+</svelte:head>
+
 <header>
   <h1>{APP_TITLE}</h1>
 </header>
@@ -28,6 +32,7 @@
       // background-color: lavender;
       background-color: $background;
       font-family: 'Trebuchet MS';
+      overflow: auto;
     }
     h1, h2, h3 {
       text-align: center;

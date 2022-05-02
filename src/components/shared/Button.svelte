@@ -43,8 +43,6 @@
   @include btnType("submit", $submit);
   @include btnType("cancel", $cancel);
 
-  // @include btnType("light-gray", $light-gray-btn, $dark-gray, $light-gray-btn-border);
-
   .btn-shadow {
     box-shadow: 2px 2px 2px rgba(0,0,0,0.15);
   }
